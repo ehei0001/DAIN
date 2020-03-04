@@ -1,0 +1,15 @@
+correlation-cuda==0.0.0
+depthflowprojection-cuda==0.0.0
+filterinterpolation-cuda==0.0.0
+flowprojection-cuda==0.0.0
+imageio==2.8.0
+interpolation-cuda==0.0.0
+interpolationch-cuda==0.0.0
+mindepthflowprojection-cuda==0.0.0
+numpy==1.18.1
+Pillow==7.0.0
+separableconv-cuda==0.0.0
+separableconvflow-cuda==0.0.0
+six==1.14.0
+torch==1.4.0
+torchvision==0.5.0

@@ -1,3 +1,7 @@
+Windows based build version
+* Python 3.7
+* imageio(scipy.misc.imread replaced)
+
 # DAIN (Depth-Aware Video Frame Interpolation)
 [Project](https://sites.google.com/view/wenbobao/dain) **|** [Paper](http://arxiv.org/abs/1904.00830)
 

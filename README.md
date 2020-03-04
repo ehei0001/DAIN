@@ -1,6 +1,6 @@
 on Windows
 * Python 3.7
-* imageio(scipy.misc.imread replaced)
+* on Command Prompt
   * pip install imageio
   * pip install torch===1.4.0 torchvision===0.5.0 -f https://download.pytorch.org/whl/torch_stable.html
   * PWCNet\correlation_package_pytorch1_0\build.bat

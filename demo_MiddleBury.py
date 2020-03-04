@@ -10,7 +10,7 @@ import numpy
 import networks
 from my_args import  args
 
-from scipy.misc import imread, imsave
+from imageio import imread, imsave
 from AverageMeter import  *
 
 torch.backends.cudnn.benchmark = True # to speed up the
@@ -21,7 +21,7 @@ MB_Other_DATA = "./MiddleBurySet/other-data/"
 MB_Other_RESULT = "./MiddleBurySet/other-result-author/"
 MB_Other_GT = "./MiddleBurySet/other-gt-interp/"
 if not os.path.exists(MB_Other_RESULT):
-    os.mkdir(MB_Other_RESULT)
+    os.makedirs(MB_Other_RESULT)
 
 
 
@@ -70,14 +70,14 @@ interp_error = AverageMeter()
 if DO_MiddleBurryOther:
     subdir = os.listdir(MB_Other_DATA)
     gen_dir = os.path.join(MB_Other_RESULT, unique_id)
-    os.mkdir(gen_dir)
+    os.makedirs(gen_dir)
 
     tot_timer = AverageMeter()
     proc_timer = AverageMeter()
     end = time.time()
     for dir in subdir:
         print(dir)
-        os.mkdir(os.path.join(gen_dir, dir))
+        os.makedirs(os.path.join(gen_dir, dir))
         arguments_strFirst = os.path.join(MB_Other_DATA, dir, "frame10.png")
         arguments_strSecond = os.path.join(MB_Other_DATA, dir, "frame11.png")
         arguments_strOut = os.path.join(gen_dir, dir, "frame10i11.png")

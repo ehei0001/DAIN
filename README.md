@@ -1,3 +1,13 @@
+on Windows
+* Python 3.7
+* on Command Prompt
+  * pip install imageio
+  * pip install torch===1.4.0 torchvision===0.5.0 -f https://download.pytorch.org/whl/torch_stable.html
+  * PWCNet\correlation_package_pytorch1_0\build.bat
+  * my_package\build.bat
+  * python run demo_MiddleBury.py
+* see result at MiddleBurySet\other-result-author
+
 # DAIN (Depth-Aware Video Frame Interpolation)
 [Project](https://sites.google.com/view/wenbobao/dain) **|** [Paper](http://arxiv.org/abs/1904.00830)
 

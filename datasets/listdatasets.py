@@ -1,13 +1,11 @@
 import torch.utils.data as data
 import os
 import os.path
-from scipy.ndimage import imread
+from imageio import imread
 import numpy as np
 import random
 
 def Vimeo_90K_loader(root, im_path, input_frame_size = (3, 256, 448), output_frame_size = (3, 256, 448), data_aug = True):
-
-
     root = os.path.join(root,'sequences',im_path)
 
     if data_aug and random.randint(0, 1):
@@ -42,17 +40,31 @@ def Vimeo_90K_loader(root, im_path, input_frame_size = (3, 256, 448), output_fra
 
     X0 = np.transpose(im_pre1,(2,0,1))
     X2 = np.transpose(im_pre2, (2, 0, 1))
-
     y = np.transpose(im_mid, (2, 0, 1))
     return X0.astype("float32")/ 255.0, \
-            X2.astype("float32")/ 255.0,\
-            y.astype("float32")/ 255.0
+           y.astype("float32") / 255.0, \
+            X2.astype("float32")/ 255.0
 
+
+def Pixel_art_loader(root, im_path):
+    root = os.path.join(root, im_path)
+    frames = (v for v in os.listdir(root))
+    frames = sorted(frames)
+
+    if len(frames) < 3:
+        raise Exception('It needs 3 frames at least')
+
+    frames = frames[:3]
+    frames = (os.path.join(root, v) for v in frames)
+    images = (imread(v) for v in frames)
+    images = (np.transpose(v, (2, 0, 1)) for v in images)
+    images = (v.astype('float32') / 255.0 for v in images)
+
+    return images
 
 
 class ListDataset(data.Dataset):
     def __init__(self, root, path_list,  loader=Vimeo_90K_loader):
-
         self.root = root
         self.path_list = path_list
         self.loader = loader
@@ -60,8 +72,10 @@ class ListDataset(data.Dataset):
     def __getitem__(self, index):
         path = self.path_list[index]
         # print(path)
-        image_0,image_2,image_1 = self.loader(self.root, path)
-        return image_0,image_2,image_1
+        images = (np.asarray(v) for v in self.loader(self.root, path))
+        image0, image1, image2 = images
+
+        return image0, image1, image2
 
     def __len__(self):
         return len(self.path_list)

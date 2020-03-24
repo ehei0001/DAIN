@@ -49,7 +49,7 @@ def Vimeo_90K_loader(root, im_path, input_frame_size = (3, 256, 448), output_fra
 def Pixel_art_loader(root, im_path):
     root = os.path.join(root, im_path)
     frames = (v for v in os.listdir(root))
-    frames = sorted(frames)
+    frames = sorted(frames, key=lambda x: '{0:0>8}'.format(x).lower())
 
     if len(frames) < 3:
         raise Exception('It needs 3 frames at least')

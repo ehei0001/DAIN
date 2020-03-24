@@ -44,7 +44,7 @@ parser.add_argument('--datasetPath',default='', nargs='+', help = 'the path of s
 # 임의 값 생성을 위한 씨앗 값
 parser.add_argument('--seed', type=int, default=1, help='random seed (default: 1)')
 # 학습 반복 회수
-parser.add_argument('--numEpoch', '-e', type = int, default=100, help= 'Number of epochs to train(default:150)')
+parser.add_argument('--numEpoch', '-e', type = int, default=100, help= 'Number of epochs to train(default:100)')
 # 학습 데이터에서 뽑아내는 데이터 단위
 parser.add_argument('--batch_size', '-b',type = int ,default=1, help = 'batch size (default:1)' )
 # 학습 데이터를 읽어들이는 프로세스 개수
